@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+       <record id="view_chitietnhap_tree_vew" model="ir.ui.view">
+			<field name="name">chitiet.nhap.tree</field>
+			<field name="model">chitiet.nhap</field>
+			<field name="arch" type="xml">
+				<tree string="Chi Tiet Nhap">
+				
+					<field name="phieunhap_id"/>
+					<field name="nguyenlieu_id"/>
+					<field name="slnhap"/>
+					<field name="dongia" />
+					<field name="tong"/>
+					
+				</tree>
+			</field>
+		</record>
+		
+		<record id="view_chitietnhap_form_vew" model="ir.ui.view">
+            <field name="name">chitiet.nhap.form</field>
+            <field name="model">chitiet.nhap</field>
+            <field name="arch" type="xml">
+                <form string="Chi Tiet Nhap" version="7.0">               
+            		<sheet>
+            		
+            		
+            		
+	                    <group string = "Thông tin chi tiết">
+	                    <div>
+            			<div>
+            				<label for = 'phieunhap_id'/>
+            			</div>
+            			<h1>
+            				<field name="phieunhap_id" placeholder = 'Mã Phiếu nhập' />
+            			</h1>
+            	
+            	
+            			<div>
+            				<label for = 'nguyenlieu_id'/>
+            			</div>
+            			<h1>
+            				<field name="nguyenlieu_id" placeholder = 'Mã nguyên liệu' on_change="onchange_dongia(nguyenlieu_id)"/>
+            			</h1>
+            		</div>
+            				<group>
+							<field name="slnhap"/>
+							<field name="dongia" />
+							<field name="tong"/>
+					
+	                    	</group>
+	                    	
+	                    </group>
+	                </sheet>
+                </form>
+            </field>
+        </record>
+        
+         
+         <record id="action_chitietnhap_form" model="ir.actions.act_window">
+         	
+            <field name="name">Chi Tiết Nhập</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">chitiet.nhap</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_chitietnhap_tree_vew"/>
+        </record>
+        
+        <menuitem id="qlquancafe" name="QL Quán Cafe" sequence="0"/>
+        <menuitem id="menu_quanly" name="Menu Quản Lý" parent="qlquancafe" sequence="0"/>
+        <menuitem id="menu_quanlykho" name="Quản Lý Kho" parent="menu_quanly" sequence="3"/>
+        
+        <menuitem action="action_chitietnhap_form"
+            id="menu_action_chitietnhap_form"
+            parent="menu_quanlykho" sequence="2"/>
+		
+    </data>
+</openerp>

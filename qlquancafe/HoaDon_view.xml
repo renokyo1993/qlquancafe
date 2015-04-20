@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+       <record id="view_hoadon_tree_vew" model="ir.ui.view">
+			<field name="name">hoa.don.tree</field>
+			<field name="model">hoa.don</field>
+			<field name="arch" type="xml">
+				<tree string="Hoa Don">
+					
+					<field name="name"/>
+					<field name="khachhang_id"/>
+					<field name="ca_id"/>
+					<field name="ngaylaphd"/>
+					<field name="amount_untaxed" />
+					
+				</tree>
+			</field>
+		</record>
+		
+		<record id="view_hoadon_form_vew" model="ir.ui.view">
+            <field name="name">hoa.don.form</field>
+            <field name="model">hoa.don</field>
+            <field name="arch" type="xml">
+                <form string="Hoa Don" version="7.0">               
+            		<sheet>
+            		<group string = "Thông tin hóa đơn" >
+            		<div>
+            			<div>
+            				<label for = 'name'/>
+            			</div>
+            			<h1>
+            		
+            				<field name="name" placeholder = 'Mã Hóa Đơn'/>
+            			</h1>
+            		</div>
+	                    <group>
+	                   
+	         
+							<field name="khachhang_id"/>
+							<field name="ca_id"/>
+							<field name="ngaylaphd"/>
+							
+	                    </group>
+	                    
+	                </group>
+	          <notebook>
+	                <page string="Chi tiết hóa đơn">
+	                    	<field name="order_line" nolabel='1'>
+	                    		<tree editable='top'>
+	                    			<field name="dodung_id" on_change="onchange_dongia(dodung_id)"/>
+	                    			<field name="soluong"/>
+	                    			<field name="dongia"/>
+									<field name="tong"/>
+	                    		</tree>
+	                    		<form>
+			                    		<field name="dodung_id" on_change="onchange_dongia(dodung_id)"/>
+			                    		<field name="soluong" />
+			                    		<field name="dongia"/>
+			                    		<field name="tong" />
+			                    </form>
+			                    
+	                    	</field>
+	               </page>
+	           </notebook>
+	           
+	                   <group string = "Tổng cộng">
+	                    <h1>
+	                    <field name="amount_untaxed" />
+	                    </h1>
+	                     </group>
+	                     
+	                </sheet>
+	                
+                </form>
+            </field>
+        </record>
+        
+         
+         <record id="action_hoadon_form" model="ir.actions.act_window">
+         	
+            <field name="name">Hóa Đơn</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hoa.don</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_hoadon_tree_vew"/>
+        </record>
+        
+        <menuitem id="qlquancafe" name="QL Quán Cafe" sequence="0"/>
+        <menuitem id="menu_quanly" name="Menu Quản Lý" parent="qlquancafe" sequence="0"/>
+        <menuitem id="menu_quanlybanhang" name="Quản Lý Bán Hàng" parent="menu_quanly" sequence="2"/>
+        
+        <menuitem action="action_hoadon_form"
+            id="menu_action_hoadon_form"
+            parent="menu_quanlybanhang" sequence="2"/>
+		
+    </data>
+</openerp>

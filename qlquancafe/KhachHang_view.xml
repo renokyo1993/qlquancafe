@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+       <record id="view_khachhang_tree_vew" model="ir.ui.view">
+			<field name="name">khach.hang.tree</field>
+			<field name="model">khach.hang</field>
+			<field name="arch" type="xml">
+				<tree string="Khach Hang">
+					
+					<field name="name"/>
+					<field name="ten"/>
+					<field name="diachi"/>
+					<field name="sodienthoai"/>
+					
+				</tree>
+			</field>
+		</record>
+		
+		<record id="view_khachhang_form_vew" model="ir.ui.view">
+            <field name="name">khach.hang.form</field>
+            <field name="model">khach.hang</field>
+            <field name="arch" type="xml">
+                <form string="Khach Hang" version="7.0">               
+            		<sheet>
+            		<group string = "Thông tin khách hàng">
+            		<div>
+            			<div>
+            				<label for = 'name'/>
+            			</div>
+            			<h1>
+            		
+            				<field name="name" placeholder = 'Mã Khách Hàng'/>
+            			</h1>
+            		</div>
+	                    <group>
+	                 
+							<field name="ten"/>
+							<field name="diachi"/>
+							<field name="sodienthoai"/>
+							
+	                    </group>
+	                    </group>
+	                </sheet>
+                </form>
+            </field>
+        </record>
+        
+         
+         <record id="action_khachhang_form" model="ir.actions.act_window">
+         	
+            <field name="name">Khách Hàng</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">khach.hang</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_khachhang_tree_vew"/>
+        </record>
+        
+        <menuitem id="qlquancafe" name="QL Quán Cafe" sequence="0"/>
+        <menuitem id="menu_quanly" name="Menu Quản Lý" parent="qlquancafe" sequence="0"/>
+        
+        <menuitem action="action_khachhang_form"
+            id="menu_action_khachhang_form"
+            parent="menu_quanly" sequence="10"/>
+		
+    </data>
+</openerp>

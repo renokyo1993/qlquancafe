@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+       <record id="view_nhacungcap_tree_vew" model="ir.ui.view">
+			<field name="name">nha.cc.tree</field>
+			<field name="model">nha.cc</field>
+			<field name="arch" type="xml">
+				<tree string="Nha Cung Cap">
+					
+					<field name="name"/>
+					<field name="tenncc"/>
+					<field name="diachi"/>
+					<field name="sodienthoai"/>
+					
+				</tree>
+			</field>
+		</record>
+		
+		<record id="view_nhacungcap_form_vew" model="ir.ui.view">
+            <field name="name">nha.cc.form</field>
+            <field name="model">nha.cc</field>
+            <field name="arch" type="xml">
+                <form string="Nha Cung Cap" version="7.0">               
+            		<sheet>
+            		<group string = "Thông tin nhà cung cấp" >
+            		<div>
+            			<div>
+            				<label for = 'name'/>
+            			</div>
+            			<h1>
+            		
+            				<field name="name" placeholder = 'Mã Nhà Cung Cấp'/>
+            			</h1>
+            		</div>
+	                    <group >
+	                   
+							<field name="tenncc"/>
+							<field name="diachi"/>
+							<field name="sodienthoai"/>
+							
+	                    </group>
+	                </group>
+	                </sheet>
+                </form>
+            </field>
+        </record>
+        
+         
+         <record id="action_nhacungcap_form" model="ir.actions.act_window">
+         	
+            <field name="name">Nhà Cung Cấp</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">nha.cc</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_nhacungcap_tree_vew"/>
+        </record>
+        
+        <menuitem id="qlquancafe" name="QL Quán Cafe" sequence="0"/>
+        <menuitem id="menu_quanly" name="Menu Quản Lý" parent="qlquancafe" sequence="0"/>
+        
+        <menuitem action="action_nhacungcap_form"
+            id="menu_action_nhacungcap_form"
+            parent="menu_quanly" sequence="10"/>
+		
+    </data>
+</openerp>

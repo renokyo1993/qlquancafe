@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+       <record id="view_tonkho_tree_vew" model="ir.ui.view">
+			<field name="name">ton.kho.tree</field>
+			<field name="model">ton.kho</field>
+			<field name="arch" type="xml">
+				<tree string="Ton Kho">
+					
+					<field name="nguyenlieu_id"/>
+					<field name="thoigian"/>
+					<field name="soluongtk"/>
+					
+					
+				</tree>
+			</field>
+		</record>
+		
+		<record id="view_tonkho_form_vew" model="ir.ui.view">
+            <field name="name">ton.kho.form</field>
+            <field name="model">ton.kho</field>
+            <field name="arch" type="xml">
+                <form string="Ton Kho" version="7.0">               
+            		<sheet>
+	                    <group string = "Thông tin tồn kho">
+	                   <div>
+            			<div>
+            				<label for = 'nguyenlieu_id'/>
+            			</div>
+            			<h1>
+            		
+            				<field name="nguyenlieu_id" placeholder = 'Mã Nguyên Liệu'/>
+            			</h1>
+            		</div>
+	                    	<group>
+							<field name="thoigian"/>
+							<field name="soluongtk"/>
+							</group>
+	                    </group>
+	                </sheet>
+                </form>
+            </field>
+        </record>
+        
+         
+         <record id="action_tonkho_form" model="ir.actions.act_window">
+         	
+            <field name="name">Tồn Kho</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ton.kho</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            
+            <field name="view_id" ref="view_tonkho_tree_vew"/>
+        </record>
+        
+        <menuitem id="qlquancafe" name="QL Quán Cafe" sequence="0"/>
+        <menuitem id="menu_quanly" name="Menu Quản Lý" parent="qlquancafe" sequence="0"/>
+        <menuitem id="menu_quanlykho" name="Quản Lý Kho" parent="menu_quanly" sequence="3"/>
+        
+        <menuitem action="action_tonkho_form"
+            id="menu_action_tonkho_form"
+            parent="menu_quanlykho" sequence="6"/>
+		
+    </data>
+</openerp>

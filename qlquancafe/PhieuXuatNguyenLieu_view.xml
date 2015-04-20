@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+       <record id="view_phieuxuatnguyenlieu_tree_vew" model="ir.ui.view">
+			<field name="name">phieu.xuat.nguyen.lieu.tree</field>
+			<field name="model">phieu.xuat.nguyen.lieu</field>
+			<field name="arch" type="xml">
+				<tree string="Phieu Xuat Nguyen Lieu">
+					
+					<field name="name"/>
+					<field name="nhanvien_id"/>
+					<field name="ngayxuat"/>
+					
+				</tree>
+			</field>
+		</record>
+		
+		<record id="view_phieuxuatnguyenlieu_form_vew" model="ir.ui.view">
+            <field name="name">phieu.xuat.nguyen.lieu.form</field>
+            <field name="model">phieu.xuat.nguyen.lieu</field>
+            <field name="arch" type="xml">
+                <form string="Phieu Xuat Nguyen Lieu" version="7.0">               
+            		<sheet>
+            		<group string = "Thông tin phiếu xuất nguyên liệu" >
+            		<div>
+            			<div>
+            				<label for = 'name'/>
+            			</div>
+            			<h1>
+            		
+            				<field name="name" placeholder = 'Mã Phiếu Xuất'/>
+            			</h1>
+            			<div>
+            				<label for = 'nhanvien_id'/>
+            			</div>
+            			<h1>
+            		
+            				<field name="nhanvien_id" placeholder = 'Mã Nhân Viên'/>
+            			</h1>
+            		</div>
+	                    <group>
+	                   
+							<field name="ngayxuat"/>
+							
+	                    </group>
+	               </group>
+	                    
+	                    <notebook>
+	                <page string="Chi tiết xuất nguyên liệu">
+	                    	<field name="order_line" nolabel='1'>
+	                    		<tree editable='top'>
+	                    			<field name="nguyenlieu_id" context="{'search_nguyenlieu':True}"/>
+	                    			<field name="soluong"/>
+	                    			
+	                    		</tree>
+	                    		<form>
+			                    	<field name="nguyenlieu_id" context="{'search_nguyenlieu':True}"/>
+	                    			<field name="soluong"/>
+			                    </form>
+			                    
+	                    	</field>
+	                    </page>
+	                    </notebook>
+	                    
+	                </sheet>
+                </form>
+            </field>
+        </record>
+        
+         
+         <record id="action_phieuxuatnguyenlieu_form" model="ir.actions.act_window">
+         	
+            <field name="name">Phiếu Xuất Nguyên Liệu</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">phieu.xuat.nguyen.lieu</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_phieuxuatnguyenlieu_tree_vew"/>
+        </record>
+        
+        <menuitem id="qlquancafe" name="QL Quán Cafe" sequence="0"/>
+        <menuitem id="menu_quanly" name="Menu Quản Lý" parent="qlquancafe" sequence="0"/>
+        <menuitem id="menu_quanlykho" name="Quản Lý Kho" parent="menu_quanly" sequence="3"/>
+        
+        <menuitem action="action_phieuxuatnguyenlieu_form"
+            id="menu_action_phieuxuatnguyenlieu_form"
+            parent="menu_quanlykho" sequence="4"/>
+		
+    </data>
+</openerp>

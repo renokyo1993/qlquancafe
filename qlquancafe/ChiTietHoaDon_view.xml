@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+       <record id="view_chitiethoadon_tree_vew" model="ir.ui.view">
+			<field name="name">chi.tiet.hoa.don.tree</field>
+			<field name="model">chi.tiet.hoa.don</field>
+			<field name="arch" type="xml">
+				<tree string="Chi Tiet Hoa Don">
+					
+					<field name="hoadon_id"/>
+					<field name="dodung_id"/>
+					<field name="soluong"/>
+					<field name="dongia"/>
+					<field name="tong"/>
+					
+				</tree>
+			</field>
+		</record>
+		
+		<record id="view_chitiethoadon_form_vew" model="ir.ui.view">
+            <field name="name">chi.tiet.hoa.don.form</field>
+            <field name="model">chi.tiet.hoa.don</field>
+            <field name="arch" type="xml">
+                <form string="Chi Tiet Hoa Don" version="7.0">               
+            		<sheet>
+            		<group string = "Thông tin chi tiết" >
+            		<div>
+            			<div>
+            				<label for = 'hoadon_id'/>
+            			</div>
+            			<h1>
+            		
+            				<field name="hoadon_id" placeholder = 'Mã Hóa Đơn'/>
+            			</h1>
+            			<div>
+            				<label for = 'dodung_id'/>
+            			</div>
+            			<h1>
+            		
+            				<field name="dodung_id" placeholder = 'Mã Đồ Dùng' on_change="onchange_dongia(dodung_id)"/>
+            			</h1>
+            		</div>
+	                    <group>
+	                   
+							<field name="soluong"/>
+							<field name="dongia" /> 
+							<field name="tong"/>
+							
+	                    </group>
+	                 </group>
+	                </sheet>
+                </form>
+            </field>
+        </record>
+        
+       
+         
+         <record id="action_chitiethoadon_form" model="ir.actions.act_window">
+         	
+            <field name="name">Chi Tiết Hóa Đơn</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">chi.tiet.hoa.don</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_chitiethoadon_tree_vew"/>
+        </record>
+        
+        <menuitem id="qlquancafe" name="QL Quán Cafe" sequence="0"/>
+        <menuitem id="menu_quanly" name="Menu Quản Lý" parent="qlquancafe" sequence="0"/>
+        <menuitem id="menu_quanlybanhang" name="Quản Lý Bán Hàng" parent="menu_quanly" sequence="3"/>
+        
+        <menuitem action="action_chitiethoadon_form"
+            id="menu_action_chitiethoadon_form"
+            parent="menu_quanlybanhang" sequence="3"/>
+		
+    </data>
+</openerp>

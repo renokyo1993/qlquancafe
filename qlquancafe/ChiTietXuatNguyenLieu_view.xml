@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+       <record id="view_chitietxuatnguyenlieu_tree_vew" model="ir.ui.view">
+			<field name="name">chi.tiet.xuat.nguyen.lieu.tree</field>
+			<field name="model">chi.tiet.xuat.nguyen.lieu</field>
+			<field name="arch" type="xml">
+				<tree string="Chi Tiet Xuat Nguyen Lieu">
+					
+					<field name="phieuxuat_id"/>
+					<field name="nguyenlieu_id" context="{'search_nguyenlieu':True}"/>
+					<field name="soluong"/>
+					
+				</tree>
+			</field>
+		</record>
+		
+		<record id="view_chitietxuatnguyenlieu_form_vew" model="ir.ui.view">
+            <field name="name">chi.tiet.xuat.nguyen.lieu.form</field>
+            <field name="model">chi.tiet.xuat.nguyen.lieu</field>
+            <field name="arch" type="xml">
+                <form string="Chi Tiet Xuat Nguyen Lieu" version="7.0">               
+            		<sheet>
+            		<group string = "Thông tin chi tiết xuất đồ dùng" >
+            		<div>
+            			<div>
+            				<label for = 'phieuxuat_id'/>
+            			</div>
+            			<h1>
+            		
+            				<field name="phieuxuat_id" placeholder = 'Mã Phiếu Xuất'/>
+            			</h1>
+            			<div>
+            				<label for = 'nguyenlieu_id'/>
+            			</div>
+            			<h1>           		
+            				<field name="nguyenlieu_id" placeholder = 'Mã Nguyên Liệu' context="{'search_nguyenlieu':True}"/>
+            			</h1>
+            		</div>
+	                    <group>
+	                   
+	      
+							<field name="soluong"/>
+							
+	                    </group>
+	                     </group>
+	                </sheet>
+                </form>
+            </field>
+        </record>
+        
+         
+         <record id="action_chitietxuatnguyenlieu_form" model="ir.actions.act_window">
+         	
+            <field name="name">Chi Tiết Xuất Nguyên Liệu</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">chi.tiet.xuat.nguyen.lieu</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_chitietxuatnguyenlieu_tree_vew"/>
+        </record>
+        
+        <menuitem id="qlquancafe" name="QL Quán Cafe" sequence="0"/>
+        <menuitem id="menu_quanly" name="Menu Quản Lý" parent="qlquancafe" sequence="0"/>
+        <menuitem id="menu_quanlykho" name="Quản Lý Kho" parent="menu_quanly" sequence="3"/>
+        
+        <menuitem action="action_chitietxuatnguyenlieu_form"
+            id="menu_action_chitietxuatnguyenlieu_form"
+             parent="menu_quanlykho" sequence="5"/>
+		
+    </data>
+</openerp>

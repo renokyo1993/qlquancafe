@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+       <record id="view_luongnhanvien_tree_vew" model="ir.ui.view">
+			<field name="name">luong.nhan.vien.tree</field>
+			<field name="model">luong.nhan.vien</field>
+			<field name="arch" type="xml">
+				<tree string="Luong Nhan Vien">
+					
+					<field name="nhanvien_id"/>
+					<field name="thangbl"/>
+					<field name="nambl"/>
+					<field name="thuongthang" />
+					<field name="tienluong"/>
+					<field name="tienthuong"/>
+					<field name="hsl"/>
+					<field name="total"/>
+					
+					
+				</tree>
+			</field>
+		</record>
+		
+		<record id="view_luongnhanvien_form_vew" model="ir.ui.view">
+            <field name="name">luong.nhan.vien.form</field>
+            <field name="model">luong.nhan.vien</field>
+            <field name="arch" type="xml">
+                <form string="Luong Nhan Vien" version="7.0">               
+            		<sheet>
+            		<group string = "Thông tin lương nhân viên" >
+            		<div>
+            			<div>
+            				<label for = 'nhanvien_id'/>
+            			</div>
+            			<h1>
+            		
+            				<field name="nhanvien_id" placeholder = 'Mã Nhân Viên'/>
+            			</h1>
+            			<div>
+            				<label for = 'thangbl'/>
+            			</div>
+            			<h1>
+            		
+            				<field name="thangbl" placeholder = 'Tháng Bảng Lương'/>
+            			</h1>
+            			<div>
+            				<label for = 'nambl'/>
+            			</div>
+            			<h1>
+            		
+            				<field name="nambl" placeholder = 'Năm Bảng Lương'/>
+            			</h1>
+            		</div>
+	                    <group>
+	                  
+							<field name="thuongthang" on_change="onchange_luong(thuongthang)"/>
+							<field name="tienluong"/>
+							<field name="tienthuong"   attrs="{'readonly':[('thuongthang','=',False)]}"/>
+							<field name="hsl"/>
+							<field name="total"/>
+							
+	                    </group>
+	                    </group>
+	                </sheet>
+                </form>
+            </field>
+        </record>
+        
+         
+         <record id="action_luongnhanvien_form" model="ir.actions.act_window">
+         	
+            <field name="name">Lương Nhân Viên</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">luong.nhan.vien</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_luongnhanvien_tree_vew"/>
+        </record>
+        
+        <menuitem id="qlquancafe" name="QL Quán Cafe" sequence="0"/>
+        <menuitem id="menu_quanly" name="Menu Quản Lý" parent="qlquancafe" sequence="0"/>
+        <menuitem id="menu_quanlynhanvien" name="Quản Lý Nhân Viên" parent="menu_quanly" sequence="1"/>
+        
+        <menuitem action="action_luongnhanvien_form"
+            id="menu_action_luongnhanvien_form"
+            parent="menu_quanlynhanvien" sequence="3"/>
+		
+    </data>
+</openerp>

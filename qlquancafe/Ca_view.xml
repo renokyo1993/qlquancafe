@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+       <record id="view_ca_tree_vew" model="ir.ui.view">
+			<field name="name">ca.lam.tree</field>
+			<field name="model">ca.lam</field>
+			<field name="arch" type="xml">
+				<tree string="Ca">
+					
+					<field name="name"/>
+					
+					<field name="tenca"/>
+					<field name="batdau"/>
+					<field name="ketthuc"/>
+					<field name="luongca"/>
+					
+				</tree>
+			</field>
+		</record>
+		
+		<record id="view_ca_form_vew" model="ir.ui.view">
+            <field name="name">ca.lam.form</field>
+            <field name="model">ca.lam</field>
+            <field name="arch" type="xml">
+                <form string="Ca" version="7.0">               
+            		<sheet>
+            		<group string = "Thông Tin Ca">
+            		<div>
+            			<div>
+            				<label for = 'name'/>
+            				
+            			</div>
+            			<h1>
+            				<field name="name" placeholder = 'Mã Ca'/>
+            				
+            			</h1>
+            			
+            		</div>
+	                    <group>
+	                   
+							<field name="tenca"/>
+							<field name="batdau"/>
+							<field name="ketthuc"/>
+							<field name="luongca"/>
+							
+	                    </group>
+	                    </group>
+	                </sheet>
+                </form>
+            </field>
+        </record>
+        
+         
+         <record id="action_ca_form" model="ir.actions.act_window">
+         	
+            <field name="name">Ca</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ca.lam</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_ca_tree_vew"/>
+        </record>
+        
+       <menuitem id="qlquancafe" name="QL Quán Cafe" sequence="0"/>
+        <menuitem id="menu_quanly" name="Menu Quản Lý" parent="qlquancafe" sequence="0"/>
+        <menuitem id="menu_quanlynhanvien" name="Quản Lý Nhân Viên" parent="menu_quanly" sequence="1"/>
+        
+        <menuitem action="action_ca_form"
+            id="menu_action_ca_form"
+            parent="menu_quanlynhanvien" sequence="2"/>
+		
+    </data>
+</openerp>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+       <record id="view_phieuxuatdodung_tree_vew" model="ir.ui.view">
+			<field name="name">phieu.xuat.do.dung.tree</field>
+			<field name="model">phieu.xuat.do.dung</field>
+			<field name="arch" type="xml">
+				<tree string="Phieu Xuat Do Dung">
+					
+					<field name="name"/>
+					<field name="nhanvien_id"/>
+					<field name="ngayxuat"/>
+					
+				</tree>
+			</field>
+		</record>
+		
+		<record id="view_phieuxuatdodung_form_vew" model="ir.ui.view">
+            <field name="name">phieu.xuat.do.dung.form</field>
+            <field name="model">phieu.xuat.do.dung</field>
+            <field name="arch" type="xml">
+                <form string="Phieu Xuat Do Dung" version="7.0">               
+            		<sheet>
+            		<group string = "Thông tin phiếu xuất đồ dùng" >
+            		<div>
+            			<div>
+            				<label for = 'name'/>
+            			</div>
+            			<h1>
+            		
+            				<field name="name" placeholder = 'Mã Phiếu Xuất'/>
+            			</h1>
+            			<div>
+            				<label for = 'nhanvien_id'/>
+            			</div>
+            			<h1>
+            		
+            				<field name="nhanvien_id" placeholder = 'Mã Nhân Viên'/>
+            			</h1>
+            		</div>
+	                    <group>
+	                   
+	                    	
+							<field name="ngayxuat"/>
+							
+	                    </group>
+	                    </group>
+	                    
+	                    <notebook>
+	                <page string="Chi tiết xuất đồ dùng">
+	                    	<field name="order_line" nolabel='1'>
+	                    		<tree editable='top'>
+	                    			<field name="dodung_id" context="{'search_dodung':True}"/>
+	                    			<field name="slxuat"/>
+	                    			
+	                    		</tree>
+	                    		<form>
+			                    	<field name="dodung_id" context="{'search_dodung':True}"/>
+	                    			<field name="slxuat"/>
+			                    </form>
+			                    
+	                    	</field>
+	                    </page>
+	                    </notebook>
+	                    
+	                </sheet>
+                </form>
+            </field>
+        </record>
+        
+         
+         <record id="action_phieuxuatdodung_form" model="ir.actions.act_window">
+         	
+            <field name="name">Phiếu Xuất Đồ Dùng</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">phieu.xuat.do.dung</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_phieuxuatdodung_tree_vew"/>
+        </record>
+        
+        <menuitem id="qlquancafe" name="QL Quán Cafe" sequence="0" groups = "group_qlbep"/>
+        <menuitem id="menu_quanly" name="Menu Quản Lý" parent="qlquancafe" sequence="0"/>
+        <menuitem id="menu_quanlybep" name="Quản Lý Bếp" parent="menu_quanly" sequence="4"/>
+        
+        <menuitem action="action_phieuxuatdodung_form"
+            id="menu_action_phieuxuatdodung_form"
+            parent="menu_quanlybep" sequence="1"/>
+		
+    </data>
+</openerp>

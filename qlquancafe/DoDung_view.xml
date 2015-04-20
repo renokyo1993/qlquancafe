@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+       <record id="view_dodung_tree_vew" model="ir.ui.view">
+			<field name="name">do.dung.tree</field>
+			<field name="model">do.dung</field>
+			<field name="arch" type="xml">
+				<tree string="Do Dung">
+					
+					<field name="name"/>
+					<field name="ten"/>
+					<field name="donvitinh"/>
+					<field name="dongia"/>
+					<field name="amount_untaxed2"/>
+					
+				</tree>
+			</field>
+		</record>
+		
+		<record id="view_dodung_form_vew" model="ir.ui.view">
+            <field name="name">do.dung.form</field>
+            <field name="model">do.dung</field>
+            <field name="arch" type="xml">
+                <form string="Do Dung" version="7.0">               
+            		<sheet>
+            		<group string = "Thông tin đồ dùng">
+            		<div>
+            			<div>
+            				<label for = 'name'/>
+            			</div>
+            			<h1>
+            		
+            				<field name="name" placeholder = 'Mã Đồ Dùng'/>
+            			</h1>
+            		</div>
+	                    
+	                   <group>
+	                    	
+							<field name="ten"/>
+							<field name="donvitinh"/>
+							<field name="dongia"/>
+							<field name="amount_untaxed2"/>
+							
+	                    </group>
+	                </group>
+	                
+	                <notebook>
+	                <page string="Số Lượng Tồn">
+	                    	<field name="order_line" nolabel='1'>
+	                    		<tree editable='top'>
+	                    			
+	                    			<field name="thoigian"/>
+	                    			<field name="soluongtdd"/>
+									
+	                    		</tree>
+	                    		<form>
+	                    		
+			                    	<field name="thoigian"/>
+	                    			<field name="soluongtdd"/>
+	                    			
+	                    			
+	                    			
+			                    </form>
+			                    
+	                    	</field>
+	                    <group string = "Tổng cộng">
+	                    				<h1>
+	                   						 <field name="amount_untaxed" />
+	                    				</h1>
+	                     </group>
+	                    </page>
+	                    <page string="Số Lượng Xuất">
+	                    	<field name="order_line1" nolabel='1'>
+	                    		<tree editable='top'>
+	                    			
+	                    			<field name="phieuxuat_id"/>
+	                    			<field name="slxuat"/>
+									
+	                    		</tree>
+	                    		<form>
+	                    		
+			                    	<field name="phieuxuat_id"/>
+	                    			<field name="slxuat"/>
+	                    			
+	                    			
+	                    			
+			                    </form>
+			                    
+	                    	</field>
+	                    <group string = "Tổng cộng">
+	                    				<h1>
+	                   						 <field name="amount_untaxed1" />
+	                    				</h1>
+	                     </group>
+	                    </page>
+	                    
+	                    </notebook>
+	                    
+	                </sheet>
+                </form>
+            </field>
+        </record>
+        
+         
+         <record id="action_dodung_form" model="ir.actions.act_window">
+         	
+            <field name="name">Đồ Dùng</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">do.dung</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_dodung_tree_vew"/>
+        </record>
+        
+        <menuitem id="qlquancafe" name="QL Quán Cafe" sequence="0" groups = "group_qlbanhang" />
+        <menuitem id="menu_quanly" name="Menu Quản Lý" parent="qlquancafe" sequence="0"/>
+        <menuitem id="menu_quanlybep" name="Quản Lý Bếp" parent="menu_quanly" sequence="4"/>
+        
+        <menuitem action="action_dodung_form"
+            id="menu_action_dodung_form"
+            parent="menu_quanlybep" sequence="4"/>
+		
+    </data>
+</openerp>

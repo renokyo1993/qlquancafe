@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+       <record id="view_chamcong_tree_vew" model="ir.ui.view">
+			<field name="name">cham.cong.tree</field>
+			<field name="model">cham.cong</field>
+			<field name="arch" type="xml">
+				<tree string="Cham Cong">
+					
+					<field name="nhanvien_id"/>
+					<field name="ca_id"/>
+					<field name="ngay"/>
+					
+				</tree>
+			</field>
+		</record>
+		
+		<record id="view_chamcong_form_vew" model="ir.ui.view">
+            <field name="name">cham.cong.form</field>
+            <field name="model">cham.cong</field>
+            <field name="arch" type="xml">
+                <form string="Cham Cong" version="7.0">               
+            		<sheet>
+            		<group string = "Thông tin chấm công" >
+            		<div>
+            			<div>
+            				<label for = 'nhanvien_id'/>
+            			</div>
+            			<h1>
+            		
+            				<field name="nhanvien_id" placeholder = 'Mã Nhân Viên'/>
+            			</h1>
+            			<div>
+            				<label for = 'ca_id'/>
+            			</div>
+            			<h1>
+            		
+            				<field name="ca_id" placeholder = 'Mã Ca'/>
+            			</h1>
+            		</div>
+	                    <group>
+	                   
+	                    	
+							<field name="ngay"/>
+							
+	                    </group>
+	                    </group>
+	                </sheet>
+                </form>
+            </field>
+        </record>
+        
+         
+         <record id="action_chamcong_form" model="ir.actions.act_window">
+         	
+            <field name="name">Chấm Công</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cham.cong</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_chamcong_tree_vew"/>
+        </record>
+        
+        <menuitem id="qlquancafe" name="QL Quán Cafe" sequence="0"/>
+        <menuitem id="menu_quanly" name="Menu Quản Lý" parent="qlquancafe" sequence="0"/>
+        <menuitem id="menu_quanlynhanvien" name="Quản Lý Nhân Viên" parent="menu_quanly" sequence="1"/>
+        
+        <menuitem action="action_chamcong_form"
+            id="menu_action_chamcong_form"
+            parent="menu_quanlynhanvien" sequence="4"/>
+		
+    </data>
+</openerp>

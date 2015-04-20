@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+       <record id="view_phieunhap_tree_vew" model="ir.ui.view">
+			<field name="name">phieu.nhap.tree</field>
+			<field name="model">phieu.nhap</field>
+			<field name="arch" type="xml">
+				<tree string="Phieu Nhap">
+					
+					<field name="name"/>
+					<field name="nhanvien_id"/>
+					<field name="nhacungcap_id"/>
+					<field name="ngaynhap"/>
+					<field name="amount_untaxed" />
+					
+				</tree>
+			</field>
+		</record>
+		
+		<record id="view_phieunhap_form_vew" model="ir.ui.view">
+            <field name="name">phieu.nhap.form</field>
+            <field name="model">phieu.nhap</field>
+            <field name="arch" type="xml">
+                <form string="Phieu Nhap" version="7.0">               
+            		<sheet>
+            	<group string = "Thông tin phiếu nhập">
+            		<div>
+            			<div>
+            				<label for = 'name'/>
+            			</div>
+            			<h1>
+            				<field name="name" placeholder = 'Mã Phiếu nhập'/>
+            			</h1>
+            	
+            	
+            			
+            		</div>
+            	
+	                    <group>
+	           				<field name="nhanvien_id"/>
+	           				<field name="nhacungcap_id"/>
+							<field name="ngaynhap"/>
+							
+							</group>
+	                </group>
+	                
+	                <notebook>
+	                <page string="Chi tiết phiếu nhập">
+	                    	<field name="chitiet_nhap" nolabel='1'>
+	                    		<tree editable='top'>
+	                    			<field name="nguyenlieu_id" on_change="onchange_dongia(nguyenlieu_id)"/>
+	                    			<field name="slnhap"/>
+	                    			<field name="dongia"/>
+									<field name="tong"/>
+	                    		</tree>
+	                    		<form>
+			                    		<field name="nguyenlieu_id" on_change="onchange_dongia(nguyenlieu_id)"/>
+			                    		<field name="slnhap" />
+			                    		<field name="dongia"/>
+			                    		<field name="tong" />
+			                    </form>
+			                    
+	                    	</field>
+	                    </page>
+	                    </notebook>
+	                    <group string = "Tổng cộng">
+	                    <h1>
+	                    <field name="amount_untaxed" />
+	                    </h1>
+	                     </group>
+	                </sheet>
+                </form>
+            </field>
+        </record>
+        
+         
+         <record id="action_phieunhap_form" model="ir.actions.act_window">
+         	
+            <field name="name">Phiếu Nhập</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">phieu.nhap</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_phieunhap_tree_vew"/>
+        </record>
+        
+        <menuitem id="qlquancafe" name="QL Quán Cafe" sequence="0" groups = "group_qlkho"/>
+        <menuitem id="menu_quanly" name="Menu Quản Lý" parent="qlquancafe" sequence="0"/>
+        <menuitem id="menu_quanlykho" name="Quản Lý Kho" parent="menu_quanly" sequence="3"/>
+        
+        <menuitem action="action_phieunhap_form"
+            id="menu_action_phieunhap_form"
+            parent="menu_quanlykho" sequence="1"/>
+		
+    </data>
+</openerp>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <record id="view_phieunhap_tree" model="ir.ui.view">
+        <field eval="1" name="priority"/>
+        <field name="name">phieunhap.report.tree</field>
+        <field name="model">phieunhap.report</field>
+        <field name="arch" type="xml">
+            <tree string="Sales Analysis" create="false">
+                <field name="ngaynhap" invisible="1"/>
+               
+                <field name="year" invisible="1"/>
+                <field name="day" invisible="1"/>
+                <field name="month" invisible="1"/>
+                <field name="phieunhap_id" invisible="1"/>
+                <field name="nguyenlieu_id" invisible="1" />
+                
+                <field name="slnl" invisible="0"/>
+                <field name="slnhap" invisible="0"/>
+                <field name="dongia" invisible="0"/>
+                <field name="tong" invisible="0"/>
+              
+                
+            </tree>
+        </field>
+    </record>
+
+    
+
+    <record id="view_phieunhap_search" model="ir.ui.view">
+        <field name="name">phieunhap.report.search</field>
+        <field name="model">phieunhap.report</field>
+        <field name="arch" type="xml">
+            <search string="Sales Analysis">
+                <field name="ngaynhap"/>
+                <field name="phieunhap_id"/>
+                <field name="nguyenlieu_id"/>
+                <field name="slnhap"/>
+                
+                <field name="dongia"/>
+                <field name="tong"/>
+               
+                
+                <group expand="1" string="Group By...">
+                    <filter string="Phiếu nhập" icon="terp-personal"  context="{'group_by':'phieunhap_id'}"/>
+                    <filter string="Nguyên liệu" icon="terp-partner"   context="{'group_by':'nguyenlieu_id'}"/>
+                    <filter string="Day" icon="terp-go-today" context="{'group_by':'day'}" help="Ordered date of the sales order"/>
+                    <filter string="Month" name="order_month" icon="terp-go-month" context="{'group_by':'month'}" help="Ordered month of the sales order"/>
+                    <filter string="Year" icon="terp-go-year" context="{'group_by':'year'}" help="Ordered Year of the sales order"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_phieunhap_report_all" model="ir.actions.act_window">
+        <field name="name">Thống kê nhập</field>
+        <field name="res_model">phieunhap.report</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="search_view_id" ref="view_phieunhap_search"/>
+        <field name="view_id" ref="view_phieunhap_tree"/>
+        <field name="context">{'search_default_year':1,'search_default_month':1,'search_default_User':1,'group_by_no_leaf':1,'group_by':[]}</field>
+    </record>
+	
+	 <menuitem id="report" name="Thống kê" sequence="0"/>
+        <menuitem id="menu_thongke" name="Menu Thống Kê" parent="report" sequence="0"/>
+        
+    <menuitem action="action_phieunhap_report_all" id="menu_phieunhap_product_all" parent="menu_thongke" sequence="1"/>
+
+</data>
+</openerp>

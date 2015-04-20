@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <record id="view_hoadon_tree" model="ir.ui.view">
+        <field eval="1" name="priority"/>
+        <field name="name">hoadon.report.tree</field>
+        <field name="model">hoadon.report</field>
+        <field name="arch" type="xml">
+            <tree string="Sales Analysis" create="false">
+                
+               <field name="ngaylaphd" invisible="1"/>
+                <field name="year" invisible="1"/>
+                <field name="day" invisible="1"/>
+                <field name="month" invisible="1"/>
+                <field name="hoadon_id" invisible="1"/>
+                <field name="dodung_id" invisible="1" />
+                
+                <field name="sldd" invisible="0"/>
+                <field name="soluong" invisible="0"/>
+                <field name="dongia" invisible="0"/>
+                <field name="tong" invisible="0"/>
+              
+                
+            </tree>
+        </field>
+    </record>
+
+    
+
+    <record id="view_hoadon_search" model="ir.ui.view">
+        <field name="name">hoadon.report.search</field>
+        <field name="model">hoadon.report</field>
+        <field name="arch" type="xml">
+            <search string="Sales Analysis">
+            
+                <field name="ngaylaphd"/>
+                <field name="hoadon_id"/>
+                <field name="dodung_id"/>
+                <field name="soluong"/>
+                <field name="dongia"/>
+                <field name="tong"/>
+               
+                
+                <group expand="1" string="Group By...">
+                    <filter string="Hóa đơn" icon="terp-personal"  context="{'group_by':'hoadon_id'}"/>
+                    <filter string="Đồ dùng" icon="terp-partner"   context="{'group_by':'dodung_id'}"/>
+                    <filter string="Day" icon="terp-go-today" context="{'group_by':'day'}" help="Ordered date of the sales order"/>
+                    <filter string="Month" name="order_month" icon="terp-go-month" context="{'group_by':'month'}" help="Ordered month of the sales order"/>
+                    <filter string="Year" icon="terp-go-year" context="{'group_by':'year'}" help="Ordered Year of the sales order"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_hoadon_report_all" model="ir.actions.act_window">
+        <field name="name">Thống kê hóa đơn</field>
+        <field name="res_model">hoadon.report</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="search_view_id" ref="view_hoadon_search"/>
+        <field name="view_id" ref="view_hoadon_tree"/>
+        <field name="context">{'search_default_year':1,'search_default_month':1,'search_default_User':1,'group_by_no_leaf':1,'group_by':[]}</field>
+    </record>
+	
+	 <menuitem id="report" name="Thống kê" sequence="0"/>
+        <menuitem id="menu_thongke" name="Menu Thống Kê" parent="report" sequence="0"/>
+        
+    <menuitem action="action_hoadon_report_all" id="menu_hoadon_product_all" parent="menu_thongke" sequence="2"/>
+
+</data>
+</openerp>
